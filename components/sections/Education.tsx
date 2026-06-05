@@ -1,35 +1,33 @@
 import { education } from "@/lib/data/education";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { GlassCard } from "@/components/ui/GlassCard";
 
 export function Education() {
   return (
-    <section id="education" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Education"
-            title="Always learning"
-          />
-        </Reveal>
+    <SectionShell id="education" alt glow="left">
+      <Reveal>
+        <SectionHeading
+          eyebrow="Education"
+          title="Academic"
+          highlight="background"
+        />
+      </Reveal>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {education.map((item, index) => (
-            <Reveal key={item.school} delay={index * 100}>
-              <GlassCard className="h-full">
-                <p className="text-sm font-medium text-violet-400">
-                  {item.period}
-                </p>
-                <h3 className="mt-2 font-display text-xl font-bold text-foreground">
-                  {item.degree}
-                </h3>
-                <p className="mt-2 text-theme-muted">{item.school}</p>
-              </GlassCard>
-            </Reveal>
-          ))}
-        </div>
+      <div className="grid gap-5 md:grid-cols-2">
+        {education.map((item, index) => (
+          <Reveal key={item.school} delay={index * 80}>
+            <GlassCard glow className="card-shine timeline-card h-full">
+              <p className="timeline-period">{item.period}</p>
+              <h3 className="mt-2 text-lg font-bold text-foreground">
+                {item.degree}
+              </h3>
+              <p className="mt-2 text-sm text-theme-muted">{item.school}</p>
+            </GlassCard>
+          </Reveal>
+        ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

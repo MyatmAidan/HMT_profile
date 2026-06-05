@@ -10,14 +10,14 @@ type ProfilePhotoProps = {
 
 const sizeMap = {
   hero: {
-    wrapper: "w-full max-w-md shrink-0",
+    wrapper: "w-full max-w-sm shrink-0",
     aspect: "aspect-[4/5]",
-    sizes: "(max-width: 768px) 100vw, 420px",
+    sizes: "(max-width: 768px) 100vw, 384px",
   },
   about: {
-    wrapper: "w-full max-w-[280px] shrink-0",
+    wrapper: "w-full max-w-[260px] shrink-0",
     aspect: "aspect-square",
-    sizes: "(max-width: 768px) 80vw, 280px",
+    sizes: "(max-width: 768px) 80vw, 260px",
   },
 };
 
@@ -29,24 +29,27 @@ export function ProfilePhoto({
   const config = sizeMap[size];
 
   return (
-    <div
-      className={cn(config.wrapper, className)}
-      style={{
-        boxShadow: `0 24px 48px -12px var(--photo-shadow)`,
-      }}
-    >
+    <div className={cn("photo-frame group", config.wrapper, className)}>
+      <div
+        aria-hidden
+        className="absolute -inset-3 rounded-[1.35rem] opacity-60 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(135deg, var(--highlight-glow), var(--highlight-glow-secondary))",
+        }}
+      />
       <div
         className={cn(
-          "relative overflow-hidden rounded-3xl p-[2px]",
+          "relative overflow-hidden rounded-2xl p-[2px]",
           config.aspect,
         )}
         style={{
           background:
-            "linear-gradient(135deg, var(--accent), var(--accent-secondary))",
+            "linear-gradient(135deg, var(--highlight), var(--highlight-secondary))",
         }}
       >
         <div
-          className="relative size-full overflow-hidden rounded-[22px]"
+          className="relative size-full overflow-hidden rounded-[14px]"
           style={{ background: "var(--background)" }}
         >
           <Image
@@ -56,7 +59,7 @@ export function ProfilePhoto({
             priority={priority}
             loading={priority ? "eager" : "lazy"}
             sizes={config.sizes}
-            className="object-cover object-[center_12%]"
+            className="object-cover object-[center_12%] transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
       </div>

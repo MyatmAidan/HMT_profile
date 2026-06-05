@@ -1,24 +1,38 @@
 import { skillMarquee } from "@/lib/data/skills";
+import { SkillIcon } from "@/components/ui/SkillIcon";
 
 export function TechMarquee() {
   const items = [...skillMarquee, ...skillMarquee];
 
   return (
-    <div
-      className="relative overflow-hidden border-y py-4"
-      style={{
-        borderColor: "var(--border)",
-        background: "var(--card)",
-      }}
-    >
-      <div className="marquee-track flex w-max gap-8">
+    <div className="marquee-strip relative overflow-hidden border-y py-4">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20"
+        style={{
+          background:
+            "linear-gradient(90deg, var(--glass-bg-strong), transparent)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20"
+        style={{
+          background:
+            "linear-gradient(270deg, var(--glass-bg-strong), transparent)",
+        }}
+      />
+      <div className="marquee-track flex w-max items-center gap-6">
         {items.map((skill, index) => (
           <span
-            key={`${skill}-${index}`}
-            className="shrink-0 text-sm font-medium uppercase tracking-widest text-theme-muted"
+            key={`${skill.name}-${index}`}
+            className="inline-flex shrink-0 items-center gap-6"
           >
-            {skill}
-            <span className="mx-4 text-theme-accent opacity-60">•</span>
+            <span className="marquee-pill inline-flex items-center gap-2.5 rounded-lg px-3.5 py-2 text-sm font-medium text-foreground">
+              <SkillIcon icon={skill.icon} name={skill.name} size={20} />
+              {skill.name}
+            </span>
+            <span className="text-theme-accent opacity-30">•</span>
           </span>
         ))}
       </div>

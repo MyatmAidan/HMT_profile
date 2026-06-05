@@ -3,9 +3,16 @@ export type NavItem = {
   href: string;
 };
 
+export type SkillItem = {
+  name: string;
+  icon: string;
+};
+
 export type SkillCategory = {
   title: string;
-  items: string[];
+  description?: string;
+  accent?: "teal" | "indigo" | "violet";
+  items: SkillItem[];
 };
 
 export type ExperienceItem = {
@@ -38,6 +45,7 @@ export type Profile = {
   github: string;
   cvPath: string;
   image: string;
+  images?: string[];
   location?: string;
 };
 

@@ -4,11 +4,11 @@ export const education: EducationItem[] = [
   {
     degree: "Diploma in Computing",
     school: "Strategy First International College",
-    period: "2026",
+    period: "2025 - 2026",
   },
   {
-    degree: "Diploma in Information Technology",
+    degree: "Diploma in InforComm Technology",
     school: "PSB Academy Singapore",
-    period: "2025 – 2026",
+    period: "2024 - 2025",
   },
 ];

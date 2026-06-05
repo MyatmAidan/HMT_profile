@@ -10,7 +10,7 @@ export function GlassCard({ children, className, glow }: GlassCardProps) {
   return (
     <div
       className={cn(
-        "glass-card rounded-2xl p-6 backdrop-blur-xl",
+        "glass-card card-shine rounded-2xl p-6 backdrop-blur-xl",
         glow && "glass-card-glow",
         className,
       )}

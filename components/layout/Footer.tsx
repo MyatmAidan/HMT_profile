@@ -4,28 +4,23 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t py-10" style={{ borderColor: "var(--border)" }}>
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-center sm:flex-row sm:px-8 sm:text-left">
-        <p className="text-sm text-theme-muted">
-          © {year} {profile.name}. Built with Next.js.
-        </p>
-        <p className="text-sm text-theme-muted">
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-theme-accent transition-colors hover:opacity-80"
-          >
+    <footer className="px-4 pb-6 pt-4 sm:px-6">
+      <div className="site-footer glass-surface mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 rounded-2xl px-5 py-5 text-sm text-theme-muted sm:flex-row sm:px-6">
+        <div>
+          <p className="site-logo text-base">HMT<span>.</span></p>
+          <p className="mt-1">© {year} {profile.name}</p>
+        </div>
+        <div className="flex items-center gap-6">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" className="footer-link">
             GitHub
           </a>
-          <span className="mx-3 opacity-40">|</span>
-          <a
-            href={`mailto:${profile.email}`}
-            className="transition-colors hover:text-foreground"
-          >
-            {profile.email}
+          <a href={`mailto:${profile.email}`} className="footer-link">
+            Email
           </a>
-        </p>
+          <a href="/#contact" className="footer-link footer-link-cta">
+            Contact
+          </a>
+        </div>
       </div>
     </footer>
   );

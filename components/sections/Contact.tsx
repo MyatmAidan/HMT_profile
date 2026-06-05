@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { profile } from "@/lib/data/profile";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionShell } from "@/components/ui/SectionShell";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Button } from "@/components/ui/Button";
 
@@ -53,140 +54,138 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Contact"
-            title="Let's build something"
-            description="Have a project or role in mind? Send a message — I typically reply within 24 hours."
-          />
-        </Reveal>
+    <SectionShell id="contact" glow="center">
+      <Reveal>
+        <SectionHeading
+          eyebrow="Contact"
+          title="Let's work"
+          highlight="together"
+          align="center"
+          description="Open to freelance work and full-time opportunities. I'd love to hear from you."
+          className="mx-auto"
+        />
+      </Reveal>
 
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal delay={80}>
-            <GlassCard className="h-full space-y-6">
+      <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal delay={80}>
+          <GlassCard className="card-shine h-full">
+            <h3 className="text-xl font-bold text-foreground">Get in touch</h3>
+            <p className="mt-3 text-sm leading-relaxed text-theme-muted">
+              Have a project, role, or collaboration in mind? Send a message —
+              I usually reply within a day.
+            </p>
+            <div className="mt-8 space-y-5">
               <div>
-                <p className="text-sm text-theme-secondary">Email</p>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="mt-1 block text-lg text-foreground transition-colors hover:text-theme-accent"
-                >
+                <p className="contact-label">Email</p>
+                <a href={`mailto:${profile.email}`} className="contact-value">
                   {profile.email}
                 </a>
               </div>
               <div>
-                <p className="text-sm text-theme-secondary">Phone</p>
+                <p className="contact-label">Phone</p>
                 <a
                   href={`tel:${profile.phone.replace(/\s/g, "")}`}
-                  className="mt-1 block text-lg text-foreground transition-colors hover:text-theme-accent"
+                  className="contact-value"
                 >
                   {profile.phone}
                 </a>
               </div>
               <div>
-                <p className="text-sm text-theme-secondary">GitHub</p>
+                <p className="contact-label">GitHub</p>
                 <a
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 block text-lg text-theme-accent transition-colors hover:opacity-80"
+                  className="contact-value"
                 >
                   @MyatmAidan
                 </a>
               </div>
+            </div>
+            <div className="mt-8">
               <Button href={profile.cvPath} variant="secondary" download>
-                Download CV (PDF)
+                Download CV
               </Button>
-            </GlassCard>
-          </Reveal>
+            </div>
+          </GlassCard>
+        </Reveal>
 
-          <Reveal delay={160}>
-            <GlassCard glow>
-              <form onSubmit={handleSubmit} className="space-y-5">
+        <Reveal delay={140}>
+          <GlassCard glow className="card-shine">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden
+              />
+              <div>
+                <label htmlFor="name" className="contact-label">
+                  Your Name
+                </label>
                 <input
-                  type="text"
-                  name="website"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  className="hidden"
-                  aria-hidden
+                  id="name"
+                  name="name"
+                  required
+                  minLength={2}
+                  maxLength={80}
+                  className="input-field mt-2"
+                  placeholder="Your name"
                 />
-
-                <div>
-                  <label htmlFor="name" className="mb-2 block text-sm text-theme-muted">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    required
-                    minLength={2}
-                    maxLength={80}
-                    className="input-field"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-sm text-theme-muted">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    maxLength={254}
-                    className="input-field"
-                    placeholder="you@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="mb-2 block text-sm text-theme-muted"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    minLength={10}
-                    maxLength={2000}
-                    rows={5}
-                    className="input-field resize-none"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-
-                {status === "error" ? (
-                  <p className="text-sm text-red-400" role="alert">
-                    {errorMessage}
-                  </p>
-                ) : null}
-
-                {status === "success" ? (
-                  <p className="text-sm text-theme-accent" role="status">
-                    Thanks! Your message was received. I&apos;ll get back to you soon.
-                  </p>
-                ) : null}
-
-                <Button
-                  type="submit"
-                  variant="primary"
-                  className="w-full"
-                  disabled={status === "loading"}
-                >
-                  {status === "loading" ? "Sending..." : "Send message"}
-                </Button>
-              </form>
-            </GlassCard>
-          </Reveal>
-        </div>
+              </div>
+              <div>
+                <label htmlFor="email" className="contact-label">
+                  Your Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={254}
+                  className="input-field mt-2"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="contact-label">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  minLength={10}
+                  maxLength={2000}
+                  rows={5}
+                  className="input-field mt-2 resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+              {status === "error" ? (
+                <p className="text-sm text-red-500" role="alert">
+                  {errorMessage}
+                </p>
+              ) : null}
+              {status === "success" ? (
+                <p className="text-sm font-medium text-theme-accent" role="status">
+                  Message sent. I&apos;ll reply soon.
+                </p>
+              ) : null}
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Sending..." : "Contact me"}
+              </Button>
+            </form>
+          </GlassCard>
+        </Reveal>
       </div>
-    </section>
+    </SectionShell>
   );
 }

@@ -4,8 +4,8 @@ export const sectionIds = [
   "about",
   "experience",
   "projects",
-  "skills",
   "education",
+  "skills",
   "contact",
 ] as const;
 
@@ -15,7 +15,7 @@ export const navigation: NavItem[] = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
   { label: "Projects", href: "/#projects" },
-  { label: "Skills", href: "/#skills" },
   { label: "Education", href: "/#education" },
+  { label: "Skills", href: "/#skills" },
   { label: "Contact", href: "/#contact" },
 ];
