@@ -42,9 +42,6 @@ export function Hero() {
             <Button href="/#contact" variant="primary">
               Get in touch
             </Button>
-            <Button href={profile.cvPath} variant="secondary" download>
-              Download CV
-            </Button>
           </div>
 
           <div

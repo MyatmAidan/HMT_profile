@@ -102,11 +102,6 @@ export function Contact() {
                 </a>
               </div>
             </div>
-            <div className="mt-8">
-              <Button href={profile.cvPath} variant="secondary" download>
-                Download CV
-              </Button>
-            </div>
           </GlassCard>
         </Reveal>
 

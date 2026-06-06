@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navigation } from "@/lib/data/navigation";
-import { profile } from "@/lib/data/profile";
 import { cn } from "@/lib/utils/cn";
-import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
@@ -59,9 +57,6 @@ export function Header() {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <Button href={profile.cvPath} variant="secondary" download>
-            Download CV
-          </Button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -113,16 +108,6 @@ export function Header() {
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
-              <Button
-                href={profile.cvPath}
-                variant="primary"
-                className="w-full"
-                download
-              >
-                Download CV
-              </Button>
-            </li>
           </ul>
         </nav>
       ) : null}
