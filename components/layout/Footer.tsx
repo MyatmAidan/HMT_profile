@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { profile } from "@/lib/data/profile";
 
 export function Footer() {
@@ -17,9 +18,9 @@ export function Footer() {
           <a href={`mailto:${profile.email}`} className="footer-link">
             Email
           </a>
-          <a href="/#contact" className="footer-link footer-link-cta">
+          <Link href="/#contact" className="footer-link footer-link-cta">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
