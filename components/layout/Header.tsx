@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navigation } from "@/lib/data/navigation";
 import { cn } from "@/lib/utils/cn";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,8 +26,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled && "border-b backdrop-blur-xl",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        scrolled && "border-b backdrop-blur-xl shadow-sm",
       )}
       style={{
         borderColor: scrolled ? "var(--border)" : "transparent",
@@ -38,7 +37,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:px-8">
         <Link
           href="/#home"
-          className="font-display text-lg font-bold tracking-tight text-foreground"
+          className="font-display text-lg font-bold tracking-tight text-foreground transition-transform duration-300 hover:scale-[1.03]"
         >
           HMT<span className="text-theme-accent">.</span>
         </Link>
@@ -48,48 +47,43 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-theme-muted transition-colors hover:text-theme-accent"
+              className="nav-link text-sm text-theme-muted transition-colors hover:text-theme-accent"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border text-foreground"
-            style={{ borderColor: "var(--border)" }}
-            aria-expanded={menuOpen}
-            aria-label="Toggle menu"
-            onClick={() => setMenuOpen((open) => !open)}
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border text-foreground transition-transform duration-300 active:scale-95 md:hidden"
+          style={{ borderColor: "var(--border)" }}
+          aria-expanded={menuOpen}
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="transition-transform duration-300"
+            style={{ transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)" }}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              {menuOpen ? (
-                <path d="M6 6l12 12M18 6L6 18" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              )}
-            </svg>
-          </button>
-        </div>
+            {menuOpen ? (
+              <path d="M6 6l12 12M18 6L6 18" />
+            ) : (
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            )}
+          </svg>
+        </button>
       </div>
 
       {menuOpen ? (
         <nav
-          className="border-t px-5 py-6 backdrop-blur-xl md:hidden"
+          className="mobile-nav-panel border-t px-5 py-6 backdrop-blur-xl md:hidden"
           style={{
             borderColor: "var(--border)",
             background: "var(--header-bg)",
@@ -97,11 +91,15 @@ export function Header() {
           aria-label="Mobile"
         >
           <ul className="flex flex-col gap-4">
-            {navigation.map((item) => (
-              <li key={item.href}>
+            {navigation.map((item, index) => (
+              <li
+                key={item.href}
+                className="mobile-nav-item"
+                style={{ animationDelay: `${index * 60}ms` }}
+              >
                 <Link
                   href={item.href}
-                  className="block text-lg text-foreground"
+                  className="block text-lg text-foreground transition-colors hover:text-theme-accent"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.label}

@@ -29,18 +29,18 @@ export function SectionHeading({
       <div className={cn("mb-4 flex", align === "center" && "justify-center")}>
         <span className="section-accent-line" />
       </div>
-      <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+      <h2 className="section-title font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
         {highlight ? (
           <>
             {title}{" "}
-            <span className="text-gradient">{highlight}</span>
+            <span className="text-gradient-animated">{highlight}</span>
           </>
         ) : (
           title
         )}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-relaxed text-theme-muted sm:text-lg">
+        <p className="section-description mt-4 text-base leading-relaxed text-theme-muted sm:text-lg">
           {description}
         </p>
       ) : null}

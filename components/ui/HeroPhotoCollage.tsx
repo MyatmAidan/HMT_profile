@@ -42,14 +42,14 @@ export function HeroPhotoCollage() {
               onClick={() => setActiveIndex(index)}
               aria-label={`Show photo ${index + 1}`}
             >
-              <div className="hero-collage-frame">
+              <div className="hero-collage-frame group">
                 <Image
                   src={src}
                   alt={`${profile.name} — portrait ${index + 1}`}
                   fill
                   priority={index === 0}
                   sizes="(max-width: 768px) 90vw, 420px"
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
               </div>
             </button>
@@ -57,7 +57,7 @@ export function HeroPhotoCollage() {
         })}
       </div>
 
-      <div className="hero-collage-badge">
+      <div className="hero-collage-badge glass-surface animate-fade-up delay-500">
         <span
           className="status-dot h-2 w-2 rounded-full"
           style={{ background: "var(--highlight)" }}

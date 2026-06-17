@@ -54,7 +54,7 @@ export function Contact() {
   }
 
   return (
-    <SectionShell id="contact" glow="center">
+    <SectionShell id="contact">
       <Reveal>
         <SectionHeading
           eyebrow="Contact"

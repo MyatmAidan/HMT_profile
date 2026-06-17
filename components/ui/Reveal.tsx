@@ -3,13 +3,28 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils/cn";
 
+type RevealDirection = "up" | "left" | "right" | "scale";
+
 type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  direction?: RevealDirection;
 };
 
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
+const hiddenStyles: Record<RevealDirection, string> = {
+  up: "translate-y-8 opacity-0 blur-[3px]",
+  left: "-translate-x-8 opacity-0 blur-[2px]",
+  right: "translate-x-8 opacity-0 blur-[2px]",
+  scale: "scale-95 opacity-0 blur-[2px]",
+};
+
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  direction = "up",
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -24,7 +39,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -32px 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
 
     observer.observe(node);
@@ -35,10 +50,10 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
     <div
       ref={ref}
       className={cn(
-        "transition-all duration-700 ease-out",
+        "transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
         visible
-          ? "translate-y-0 opacity-100 blur-0"
-          : "translate-y-6 opacity-0 blur-[2px]",
+          ? "reveal-visible translate-x-0 translate-y-0 scale-100 opacity-100 blur-0"
+          : hiddenStyles[direction],
         className,
       )}
       style={{ transitionDelay: `${delay}ms` }}

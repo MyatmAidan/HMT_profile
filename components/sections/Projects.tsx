@@ -3,10 +3,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function Projects() {
   return (
-    <SectionShell id="projects" alt glow="center">
+    <SectionShell id="projects">
       <Reveal>
         <SectionHeading
           eyebrow="Portfolio"
@@ -21,12 +22,14 @@ export function Projects() {
           <Reveal
             key={project.title}
             delay={index * 70}
+            direction={index % 2 === 0 ? "left" : "right"}
             className={project.featured ? "md:col-span-2" : ""}
           >
-            <GlassCard
-              glow={project.featured}
-              className="card-shine group project-card flex h-full flex-col"
-            >
+            <TiltCard>
+              <GlassCard
+                glow={project.featured}
+                className="card-shine group project-card flex h-full flex-col"
+              >
               <div className="flex items-start gap-4">
                 <span className="project-index" aria-hidden>
                   {String(index + 1).padStart(2, "0")}
@@ -52,7 +55,8 @@ export function Projects() {
                   </ul>
                 </div>
               </div>
-            </GlassCard>
+              </GlassCard>
+            </TiltCard>
           </Reveal>
         ))}
       </div>

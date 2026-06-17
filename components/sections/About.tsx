@@ -14,18 +14,18 @@ const highlights = [
 
 export function About() {
   return (
-    <SectionShell id="about" alt glow="left">
+    <SectionShell id="about">
       <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-        <Reveal>
+        <Reveal direction="left">
           <div className="about-photo-wrap mx-auto w-full max-w-sm lg:mx-0">
             <div className="about-photo-glow" aria-hidden />
-            <div className="about-photo-frame">
+            <div className="about-photo-frame group overflow-hidden">
               <Image
                 src={profile.image}
                 alt={`${profile.name} — about`}
                 fill
                 sizes="(max-width: 768px) 90vw, 380px"
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               />
             </div>
             <div className="about-photo-badge glass-surface">
@@ -53,8 +53,8 @@ export function About() {
             </GlassCard>
           </Reveal>
 
-          <Reveal delay={140}>
-            <div className="mb-5 grid gap-3 sm:grid-cols-2">
+          <Reveal delay={140} direction="right">
+            <div className="grid gap-3 mb-5 sm:grid-cols-2">
               {highlights.map((item) => (
                 <div key={item} className="highlight-chip glass-surface">
                   <span className="highlight-dot" />

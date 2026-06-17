@@ -6,7 +6,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 
 export function Education() {
   return (
-    <SectionShell id="education" alt glow="left">
+    <SectionShell id="education">
       <Reveal>
         <SectionHeading
           eyebrow="Education"

@@ -6,7 +6,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 
 export function Experience() {
   return (
-    <SectionShell id="experience" glow="right">
+    <SectionShell id="experience">
       <Reveal>
         <SectionHeading
           eyebrow="Experience"
