@@ -46,6 +46,17 @@ export function Projects() {
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-theme-muted sm:text-base">
                     {project.description}
                   </p>
+                  {project.url ? (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-theme-accent transition-colors hover:text-foreground"
+                    >
+                      Visit site
+                      <span aria-hidden>↗</span>
+                    </a>
+                  ) : null}
                   <ul className="mt-5 flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
                       <li key={tech} className="tech-tag rounded-md px-2.5 py-1 text-xs font-medium">

@@ -33,6 +33,7 @@ export type ProjectItem = {
   description: string;
   stack: string[];
   featured?: boolean;
+  url?: string;
 };
 
 export type Profile = {

@@ -38,8 +38,8 @@ export function About() {
           <Reveal delay={60}>
             <SectionHeading
               eyebrow="About Me"
-              title="Who I"
-              highlight="am?"
+              title="Who am"
+              highlight="I?"
               description="A developer focused on shipping clean, reliable web products."
               className="mb-8"
             />

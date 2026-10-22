@@ -12,6 +12,7 @@ import {
   siReact,
   siTailwindcss,
   siTypescript,
+  siVuedotjs,
 } from "simple-icons";
 
 export type SkillIconPath = {
@@ -43,6 +44,7 @@ export const skillIconRegistry: Record<string, SkillIconData> = {
   javascript: fromSimpleIcon(siJavascript),
   bootstrap: fromSimpleIcon(siBootstrap),
   react: fromSimpleIcon(siReact),
+  vue: fromSimpleIcon(siVuedotjs),
   nextjs: fromSimpleIcon(siNextdotjs),
   ionic: fromSimpleIcon(siIonic),
   php: fromSimpleIcon(siPhp),

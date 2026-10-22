@@ -81,13 +81,11 @@ body {
 }
 
 .text-gradient-animated {
-  background: linear-gradient(
-    120deg,
-    var(--gradient-from) 0%,
-    var(--gradient-to) 35%,
-    var(--highlight-secondary) 65%,
-    var(--gradient-from) 100%
-  );
+  background: linear-gradient(120deg,
+      var(--gradient-from) 0%,
+      var(--gradient-to) 35%,
+      var(--highlight-secondary) 65%,
+      var(--gradient-from) 100%);
   background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -104,7 +102,7 @@ body {
   transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
 }
 
-.tilt-card > * {
+.tilt-card>* {
   transform: translateZ(12px);
 }
 
@@ -150,12 +148,10 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 42%,
-    var(--highlight-soft) 50%,
-    transparent 58%
-  );
+  background: linear-gradient(105deg,
+      transparent 42%,
+      var(--highlight-soft) 50%,
+      transparent 58%);
   transform: translateX(-120%);
   transition: transform 0.65s ease;
   pointer-events: none;
@@ -178,12 +174,10 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 65%
-  );
+  background: linear-gradient(105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.28) 50%,
+      transparent 65%);
   transform: translateX(-120%);
   transition: transform 0.55s ease;
 }
@@ -688,12 +682,10 @@ a.contact-value:hover {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--skill-brand) 55%, transparent),
-    transparent 50%,
-    color-mix(in srgb, var(--skill-brand) 25%, transparent)
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--skill-brand) 55%, transparent),
+      transparent 50%,
+      color-mix(in srgb, var(--skill-brand) 25%, transparent));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -961,11 +953,9 @@ a.contact-value:hover {
   position: absolute;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--highlight) 42%, transparent);
-  background: radial-gradient(
-    circle at 30% 30%,
-    color-mix(in srgb, var(--highlight) 22%, transparent),
-    transparent 68%
-  );
+  background: radial-gradient(circle at 30% 30%,
+      color-mix(in srgb, var(--highlight) 22%, transparent),
+      transparent 68%);
   box-shadow:
     0 0 28px color-mix(in srgb, var(--highlight) 16%, transparent),
     inset 0 0 22px color-mix(in srgb, var(--highlight) 12%, transparent);
@@ -975,11 +965,9 @@ a.contact-value:hover {
 .shape-square {
   position: absolute;
   border: 1px solid color-mix(in srgb, var(--highlight-secondary) 40%, transparent);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--highlight-secondary) 14%, transparent),
-    transparent 60%
-  );
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--highlight-secondary) 14%, transparent),
+      transparent 60%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
@@ -989,11 +977,9 @@ a.contact-value:hover {
   position: absolute;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--highlight) 38%, transparent);
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--highlight) 12%, transparent) 0%,
-    transparent 72%
-  );
+  background: radial-gradient(circle,
+      color-mix(in srgb, var(--highlight) 12%, transparent) 0%,
+      transparent 72%);
 }
 
 .shape-animate {
@@ -1018,6 +1004,7 @@ a.contact-value:hover {
 }
 
 @keyframes shape-random-float {
+
   0%,
   100% {
     transform: translate(0, 0) rotate(0deg) scale(1);
@@ -1119,11 +1106,9 @@ a.contact-value:hover {
   position: absolute;
   inset: 8% 5%;
   border-radius: 2rem;
-  background: linear-gradient(
-    135deg,
-    var(--highlight-glow),
-    var(--highlight-glow-secondary)
-  );
+  background: linear-gradient(135deg,
+      var(--highlight-glow),
+      var(--highlight-glow-secondary));
   filter: blur(48px);
   opacity: 0.75;
   animation: float-slow 16s ease-in-out infinite;
@@ -1169,6 +1154,7 @@ a.contact-value:hover {
 }
 
 @keyframes hero-photo-float {
+
   0%,
   100% {
     transform: translate(0, 0) rotate(2deg) scale(1);
@@ -1264,6 +1250,7 @@ a.contact-value:hover {
 }
 
 @keyframes gradient-shift {
+
   0%,
   100% {
     background-position: 0% center;
@@ -1309,6 +1296,7 @@ a.contact-value:hover {
 }
 
 @keyframes aurora-drift {
+
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -1346,6 +1334,7 @@ a.contact-value:hover {
 }
 
 @keyframes float-slow {
+
   0%,
   100% {
     transform: translate(0, 0);
@@ -1357,6 +1346,7 @@ a.contact-value:hover {
 }
 
 @keyframes float-delayed {
+
   0%,
   100% {
     transform: translate(0, 0);
@@ -1390,6 +1380,7 @@ a.contact-value:hover {
 }
 
 @keyframes bounce-subtle {
+
   0%,
   100% {
     transform: translateY(0);

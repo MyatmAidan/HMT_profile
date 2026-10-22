@@ -6,7 +6,8 @@ export const experience: ExperienceItem[] = [
     company: "Freelance / Project-Based",
     role: "Full-Stack Developer (Laravel & Next.js)",
     highlights: [
-      "Designed and developed a POS system using Laravel (backend) and Next.js (frontend).",
+      "Shipped PhiLo POS (philo.asia) — a production point-of-sale platform for sales, stock, reporting, and multi-branch operations.",
+      "Built the Shan Naung Yoe website (shannaungyoe.com) for a uniform and garment manufacturer, covering collections, capabilities, and inquiries.",
       "Built and delivered multiple local client web applications end-to-end.",
       "Implemented authentication, product management, sales tracking, and reporting.",
       "Developed RESTful APIs and managed MySQL databases with CRUD and optimization.",
