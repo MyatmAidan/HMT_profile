@@ -10,7 +10,7 @@ export const profile: Profile = {
   phone: "+959978844466",
   github: "https://github.com/MyatmAidan",
   cvPath: "/cv/Htet_Myat_Thu.CV.pdf",
-  image: "/image/hmt-portrait.jpg",
+  image: "/image/HMT_.jpg",
   images: ["/image/hmt-portrait.jpg", "/image/hmt_two.jpg"],
   location: "Singapore / Myanmar",
 };
