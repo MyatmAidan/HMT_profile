@@ -13,6 +13,18 @@ export const experience: ExperienceItem[] = [
       "Developed RESTful APIs and managed MySQL databases with CRUD and optimization.",
       "Collaborated with clients to gather requirements and ship user-friendly solutions.",
     ],
+    projects: [
+      {
+        title: "PhiLo POS",
+        url: "https://philo.asia/",
+        image: "/image/projects/philo-pos.png",
+      },
+      {
+        title: "Shan Naung Yoe",
+        url: "https://shannaungyoe.com",
+        image: "/image/projects/shan-naung-yoe.png",
+      },
+    ],
   },
   {
     period: "2025",

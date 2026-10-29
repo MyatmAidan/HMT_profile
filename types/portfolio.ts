@@ -15,17 +15,25 @@ export type SkillCategory = {
   items: SkillItem[];
 };
 
+export type ExperienceProject = {
+  title: string;
+  url: string;
+  image: string;
+};
+
 export type ExperienceItem = {
   period: string;
   company: string;
   role: string;
   highlights: string[];
+  projects?: ExperienceProject[];
 };
 
 export type EducationItem = {
   degree: string;
   school: string;
   period: string;
+  image?: string;
 };
 
 export type ProjectItem = {
@@ -34,6 +42,7 @@ export type ProjectItem = {
   stack: string[];
   featured?: boolean;
   url?: string;
+  image?: string;
 };
 
 export type Profile = {

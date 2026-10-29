@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { HeroPhotoCollage } from "@/components/ui/HeroPhotoCollage";
 
 const stats = [
-  { label: "Experience", value: "1+ years" },
+  { label: "Experience", value: "2 years" },
   { label: "Focus", value: "Full-stack" },
   { label: "Stack", value: "Laravel · Next.js" },
 ];

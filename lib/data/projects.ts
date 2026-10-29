@@ -8,6 +8,7 @@ export const projects: ProjectItem[] = [
     stack: ["Laravel", "Next.js", "MySQL", "REST API"],
     featured: true,
     url: "https://philo.asia/",
+    image: "/image/projects/philo-pos.png",
   },
   {
     title: "Shan Naung Yoe",
@@ -16,6 +17,7 @@ export const projects: ProjectItem[] = [
     stack: ["Laravel", "MySQL"],
     featured: true,
     url: "https://shannaungyoe.com",
+    image: "/image/projects/shan-naung-yoe.png",
   },
   {
     title: "Client Web Applications",

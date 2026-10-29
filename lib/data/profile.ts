@@ -2,7 +2,7 @@ import type { Profile } from "@/types/portfolio";
 
 export const profile: Profile = {
   name: "Htet Myat Thu",
-  title: "Web Developer",
+  title: "Full-stack Developer",
   tagline: "Building fast, secure web apps with Laravel & Next.js",
   about:
     "Passionate web developer with hands-on experience in building modern web applications using Laravel, PHP, and Next.js. Strong understanding of backend development, API integration, and responsive UI design. Eager to learn new technologies and contribute to real-world projects.",
@@ -12,5 +12,5 @@ export const profile: Profile = {
   cvPath: "/cv/Htet_Myat_Thu.CV.pdf",
   image: "/image/HMT_.jpg",
   images: ["/image/hmt-portrait.jpg", "/image/hmt_two.jpg"],
-  location: "Singapore / Myanmar",
+  location: "Yangon / Myanmar",
 };
