@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import type { CSSProperties } from "react";
 import { skillCategories } from "@/lib/data/skills";
 import { SkillIcon } from "@/components/ui/SkillIcon";
 
@@ -9,10 +10,13 @@ const ALL_SKILLS = skillCategories.flatMap((cat) =>
   cat.items.map((skill) => ({ ...skill, category: cat.title }))
 );
 
-const VISIBLE_SIDE = 5; // How many to show on each side
+const VISIBLE_SIDE = 2;
 
 export function SkillsShowcase() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const reactIndex = ALL_SKILLS.findIndex((skill) => skill.name === "React");
+    return reactIndex >= 0 ? reactIndex : 0;
+  });
   const autoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const total = ALL_SKILLS.length;
 
@@ -42,49 +46,71 @@ export function SkillsShowcase() {
     return () => window.removeEventListener("keydown", handler);
   }, [next, prev]);
 
-  // Build the items visible around the active one
-  const getItem = (offset: number) => {
-    const idx = (((activeIndex + offset) % total) + total) % total;
-    return { ...ALL_SKILLS[idx], idx };
-  };
+  const { leftItems, rightItems } = useMemo(() => {
+    let seed = activeIndex + 1;
+    const random = () => {
+      seed = (seed * 16807) % 2147483647;
+      return (seed - 1) / 2147483646;
+    };
+    const otherItems = ALL_SKILLS
+      .map((skill, idx) => ({ ...skill, idx }))
+      .filter((_, idx) => idx !== activeIndex);
 
-  // Left side: -VISIBLE_SIDE to -1 (far left = smallest)
-  const leftItems = Array.from({ length: VISIBLE_SIDE }, (_, i) => getItem(-(VISIBLE_SIDE - i)));
-  // Right side: +1 to +VISIBLE_SIDE
-  const rightItems = Array.from({ length: VISIBLE_SIDE }, (_, i) => getItem(i + 1));
-  const centerItem = getItem(0);
+    for (let i = otherItems.length - 1; i > 0; i--) {
+      const swapIndex = Math.floor(random() * (i + 1));
+      [otherItems[i], otherItems[swapIndex]] = [otherItems[swapIndex], otherItems[i]];
+    }
 
-  const scale = (pos: number) => Math.pow(0.78, Math.abs(pos));
-  const opacity = (pos: number) => Math.max(0.18, 1 - Math.abs(pos) * 0.2);
+    return {
+      leftItems: otherItems.slice(0, VISIBLE_SIDE * 2 + 1),
+      rightItems: otherItems.slice(
+        VISIBLE_SIDE * 2 + 1,
+        VISIBLE_SIDE * 4 + 2
+      ),
+    };
+  }, [activeIndex]);
+  const centerItem = { ...ALL_SKILLS[activeIndex], idx: activeIndex };
+
+  const renderSideItems = (
+    side: "left" | "right",
+    items: typeof leftItems
+  ) =>
+    items.map((item, index) => {
+      const distance = Math.abs(index - VISIBLE_SIDE);
+      const centered = distance === 0;
+      return (
+        <button
+          key={`${side}-${item.idx}`}
+          type="button"
+          className={`orbit-item orbit-item-side orbit-item-${side}${centered ? " orbit-item-active" : ""}`}
+          style={{
+            "--item-distance": distance,
+            "--item-position": index - VISIBLE_SIDE,
+          } as CSSProperties}
+          aria-label={`Show ${item.name}, ${item.category}`}
+          onClick={() => goTo(item.idx)}
+        >
+          {side === "right" && (
+            <span className="orbit-item-icon">
+              <SkillIcon icon={item.icon} name={item.name} size={28} />
+            </span>
+          )}
+          <span className="orbit-item-copy">
+            <span className="orbit-item-name">{item.name}</span>
+            <span className="orbit-item-cat">{item.category}</span>
+          </span>
+          {side === "left" && (
+            <span className="orbit-item-icon">
+              <SkillIcon icon={item.icon} name={item.name} size={28} />
+            </span>
+          )}
+        </button>
+      );
+    });
 
   return (
     <div className="orbit-root" aria-label="Technical skills carousel">
-      {/* Floating skills - left side */}
-      <div className="orbit-side orbit-left" aria-hidden>
-        {leftItems.map((item, i) => {
-          const pos = -(VISIBLE_SIDE - i); // -5 to -1
-          const s = scale(pos);
-          const o = opacity(pos);
-          return (
-            <div
-              key={`left-${item.idx}`}
-              className="orbit-item orbit-item-side"
-              style={{
-                transform: `scale(${s})`,
-                opacity: o,
-                zIndex: i + 1,
-              }}
-              onClick={() => goTo(item.idx)}
-            >
-              <div className="orbit-item-icon">
-                <SkillIcon icon={item.icon} name={item.name} size={28} />
-              </div>
-              <span className="orbit-item-name">{item.name}</span>
-              <span className="orbit-item-cat">{item.category}</span>
-            </div>
-          );
-        })}
-      </div>
+      <div className="orbit-side orbit-left">{renderSideItems("left", leftItems)}</div>
 
       {/* Center featured skill */}
       <div className="orbit-center" aria-live="polite">
@@ -125,32 +151,7 @@ export function SkillsShowcase() {
         </button>
       </div>
 
-      {/* Floating skills - right side */}
-      <div className="orbit-side orbit-right" aria-hidden>
-        {rightItems.map((item, i) => {
-          const pos = i + 1; // 1 to +5
-          const s = scale(pos);
-          const o = opacity(pos);
-          return (
-            <div
-              key={`right-${item.idx}`}
-              className="orbit-item orbit-item-side"
-              style={{
-                transform: `scale(${s})`,
-                opacity: o,
-                zIndex: VISIBLE_SIDE - i,
-              }}
-              onClick={() => goTo(item.idx)}
-            >
-              <div className="orbit-item-icon">
-                <SkillIcon icon={item.icon} name={item.name} size={28} />
-              </div>
-              <span className="orbit-item-name">{item.name}</span>
-              <span className="orbit-item-cat">{item.category}</span>
-            </div>
-          );
-        })}
-      </div>
+      <div className="orbit-side orbit-right">{renderSideItems("right", rightItems)}</div>
 
       {/* Progress dots */}
       <div className="orbit-dots" role="tablist" aria-label="Navigate skills">

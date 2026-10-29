@@ -1660,15 +1660,14 @@ a.contact-value:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
-  min-height: 320px;
+  justify-content: center;
+  min-height: 340px;
+  padding-bottom: 2rem;
   overflow: hidden;
 }
 
-/* The three-column layout: left | center | right */
-.orbit-root > .orbit-side,
-.orbit-root > .orbit-center {
-  /* handled by flexbox row at md+ */
+.orbit-side {
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -1676,43 +1675,43 @@ a.contact-value:hover {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-height: 380px;
-    gap: 0;
+    column-gap: clamp(1rem, 4vw, 3.5rem);
+    min-height: 500px;
+    padding-bottom: 2.5rem;
   }
-}
 
-/* ── Side columns ── */
-.orbit-side {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  flex: 1;
-  max-width: 240px;
-}
-
-@media (min-width: 768px) {
   .orbit-side {
     display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 360px;
   }
 }
 
 .orbit-left {
-  align-items: flex-end;
+  align-items: stretch;
 }
 
 .orbit-right {
-  align-items: flex-start;
+  align-items: stretch;
 }
 
-/* Each side skill item */
 .orbit-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  will-change: transform, opacity;
+  gap: 1rem;
+  width: 100%;
+  min-height: 76px;
+  padding: 0 0.75rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  opacity: calc(1 - (var(--item-distance) * 0.36));
+  transform: scale(calc(1 - (var(--item-distance) * 0.025)));
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .orbit-item-side {
@@ -1720,55 +1719,98 @@ a.contact-value:hover {
 }
 
 .orbit-item-side:hover {
-  opacity: 1 !important;
-  transform: scale(1.05) !important;
+  opacity: 1;
+  scale: 1.03;
+}
+
+.orbit-item-active {
+  opacity: 1;
+  scale: 1;
+}
+
+.orbit-left .orbit-item {
+  justify-content: flex-end;
+  transform:
+    perspective(700px)
+    translateX(calc(var(--item-distance) * -18px))
+    rotateY(calc(var(--item-position) * 2deg))
+    scale(calc(1 - (var(--item-distance) * 0.025)));
+}
+
+.orbit-right .orbit-item {
+  justify-content: flex-start;
+  transform:
+    perspective(700px)
+    translateX(calc(var(--item-distance) * 18px))
+    rotateY(calc(var(--item-position) * -2deg))
+    scale(calc(1 - (var(--item-distance) * 0.025)));
+}
+
+.orbit-item-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.orbit-left .orbit-item-copy {
+  text-align: right;
+}
+
+.orbit-right .orbit-item-copy {
+  text-align: left;
 }
 
 .orbit-item-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: 0 0 3.5rem;
   border-radius: 50%;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: var(--glass-inset);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.orbit-item-icon .skill-icon-invert,
+.orbit-featured-icon .skill-icon-invert {
+  filter: none;
 }
 
 .orbit-item:hover .orbit-item-icon {
-  border-color: var(--highlight);
-  box-shadow: 0 0 16px rgba(45, 212, 191, 0.25), var(--glass-inset);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.24), 0 6px 22px rgba(0, 0, 0, 0.2);
 }
 
 .orbit-item-name {
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--foreground);
-  text-align: center;
   line-height: 1.2;
 }
 
 .orbit-item-cat {
-  font-size: 0.62rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  text-align: center;
+  line-height: 1.2;
 }
 
 /* ── Center featured ── */
 .orbit-center {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 1rem;
   flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
   .orbit-center {
-    width: 220px;
+    width: 280px;
+    min-height: 330px;
     flex-direction: column;
     gap: 0;
   }
@@ -1778,7 +1820,7 @@ a.contact-value:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   position: relative;
 }
 
@@ -1788,8 +1830,8 @@ a.contact-value:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 128px;
-  height: 128px;
+  width: 136px;
+  height: 136px;
   border-radius: 50%;
   border: 1.5px solid rgba(45, 212, 191, 0.2);
   animation: orbit-ring-pulse 3s ease-in-out infinite;
@@ -1816,16 +1858,14 @@ a.contact-value:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  width: 116px;
+  height: 116px;
   border-radius: 50%;
-  background: var(--glass-bg);
-  border: 1.5px solid rgba(45, 212, 191, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
   box-shadow:
-    0 0 30px rgba(45, 212, 191, 0.18),
-    var(--glass-inset);
+    0 0 0 5px rgba(45, 212, 191, 0.14),
+    0 0 32px rgba(45, 212, 191, 0.28);
   animation: orbit-icon-float 4s ease-in-out infinite;
 }
 
@@ -1835,7 +1875,7 @@ a.contact-value:hover {
 }
 
 .orbit-featured-name {
-  font-size: 1.35rem;
+  font-size: 2.25rem;
   font-weight: 800;
   color: var(--foreground);
   text-align: center;
@@ -1845,8 +1885,8 @@ a.contact-value:hover {
 }
 
 .orbit-featured-cat {
-  font-size: 0.8rem;
-  color: var(--highlight);
+  font-size: 1.1rem;
+  color: var(--muted);
   font-weight: 500;
   letter-spacing: 0.03em;
   text-align: center;
@@ -1856,7 +1896,7 @@ a.contact-value:hover {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
@@ -1896,7 +1936,6 @@ a.contact-value:hover {
 @media (min-width: 768px) {
   .orbit-prev,
   .orbit-next {
-    /* hide on desktop - auto-advances or use dot nav */
     display: none;
   }
 }
@@ -1904,6 +1943,10 @@ a.contact-value:hover {
 /* ── Progress dots ── */
 .orbit-dots {
   display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   gap: 0.35rem;
   flex-wrap: wrap;
   justify-content: center;
