@@ -4,6 +4,7 @@ import "./globals.css";
 import { Background } from "@/components/layout/Background";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { profile } from "@/lib/data/profile";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -42,6 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={jakarta.variable}>
       <body className="min-h-screen antialiased">
+        <CustomCursor />
         <Background />
         <Header />
         <main>{children}</main>
