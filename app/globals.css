@@ -1621,39 +1621,6 @@ a.contact-value:hover {
   margin-bottom: 2.5rem;
 }
 
-/* ── Spotlight Cursor ── */
-@media (pointer: fine) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
-
-/* Fullpage spotlight layer */
-.cursor-spotlight {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9990;
-  transition: background 0.1s ease;
-  background: transparent;
-}
-
-/* Tiny precise dot */
-.cursor-dot {
-  position: fixed;
-  top: -4px;
-  left: -4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--highlight);
-  box-shadow: 0 0 8px var(--highlight), 0 0 18px rgba(45, 212, 191, 0.45);
-  pointer-events: none;
-  z-index: 9999;
-  will-change: transform;
-  transition: opacity 0.25s ease;
-}
-
 /* ── Orbital Carousel ── */
 .orbit-root {
   position: relative;
@@ -1978,64 +1945,6 @@ a.contact-value:hover {
 
 
 
-/* Custom Cursor */
-.custom-cursor-dot,
-.custom-cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  will-change: transform;
-  transition: opacity 0.2s ease;
-}
-
-.custom-cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--highlight);
-  box-shadow: 0 0 10px var(--highlight), 0 0 20px rgba(45, 212, 191, 0.5);
-  /* center the dot on cursor position */
-  margin-left: -4px;
-  margin-top: -4px;
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
-}
-
-.custom-cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(45, 212, 191, 0.55);
-  background: transparent;
-  /* center the ring */
-  margin-left: -18px;
-  margin-top: -18px;
-  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-}
-
-.custom-cursor-dot[data-pointer] {
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
-  background: var(--highlight);
-  box-shadow: 0 0 14px var(--highlight), 0 0 28px rgba(45, 212, 191, 0.6);
-}
-
-.custom-cursor-ring[data-pointer] {
-  width: 48px;
-  height: 48px;
-  margin-left: -24px;
-  margin-top: -24px;
-  border-color: rgba(45, 212, 191, 0.8);
-  background: rgba(45, 212, 191, 0.06);
-}
-
-.custom-cursor-dot[data-hidden],
-.custom-cursor-ring[data-hidden] {
-  opacity: 0;
-}
-
 /* ── Skills Root ── */
 .skills-root {
   display: flex;
@@ -2157,7 +2066,6 @@ a.contact-value:hover {
   font-size: 0.775rem;
   font-weight: 500;
   color: var(--muted);
-  cursor: none;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
